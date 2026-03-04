@@ -1,5 +1,6 @@
 from typing import Annotated, TypedDict, List, Dict, Any, Union
-from langchain_core.messages import BaseMessage, add_messages
+from langchain_core.messages import BaseMessage
+from langgraph.graph import add_messages
 
 class AgentState(TypedDict):
     """

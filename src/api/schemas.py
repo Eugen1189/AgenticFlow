@@ -11,3 +11,7 @@ class QueryResponse(BaseModel):
     answer: str = Field(..., description="The generated answer from the multi-agent system.")
     sources: List[str] = Field(default_factory=list, description="List of URLs or source names used.")
     pii_sanitized: bool = Field(..., description="Whether the response was checked for PII.")
+
+class HealthCheck(BaseModel):
+    """Schema for the health check response."""
+    status: str = "ok"
