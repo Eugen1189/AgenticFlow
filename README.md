@@ -1,5 +1,7 @@
 # AgenticFlow-Core — Multi-Agent Research & Synthesis Engine
 
+![CI Status](https://github.com/your-username/AgenticFlow-Core/actions/workflows/ci.yml/badge.svg)
+
 **Enterprise-ready autonomous agent workflow built with LangGraph and FastAPI.**
 
 ---
@@ -63,6 +65,12 @@ curl -X POST http://localhost:8000/chat \
      -H "Content-Type: application/json" \
      -d '{"query": "What are the latest trends in Agentic AI for 2024?", "max_rounds": 5}'
 ```
+
+## ✅ Quality Assurance
+
+- **Comprehensive Testing**: The project includes Unit, Integration, and End-to-End (E2E) tests ensuring every layer is functional. Run them with `pytest`.
+- **Automated CI**: Protected by GitHub Actions. Every push and pull request triggers an automated test suite to prevent regressions.
+- **Observability**: Built-in structured JSON logging for real-time monitoring and debugging in production environments.
 
 ## ⚖ Compliance & Safety
 
