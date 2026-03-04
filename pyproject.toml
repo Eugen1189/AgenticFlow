@@ -1,0 +1,25 @@
+[project]
+name = "agenticflow-core"
+version = "0.1.0"
+description = "Multi-agent workflow orchestrator for business automation"
+authors = [{name = "Eugen", email = "mamcijevgen@gmail.com"}]
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.27.0",
+    "langgraph>=0.0.30",
+    "langchain-openai>=0.1.0",
+    "langchain-community>=0.0.25",
+    "pydantic>=2.6.0",
+    "pydantic-settings>=2.2.0",
+    "tavily-python>=0.3.0",
+    "structlog>=24.1.0",
+    "python-dotenv>=1.0.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I"]

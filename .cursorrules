@@ -1,0 +1,40 @@
+# AgenticFlow-Core: AI Specialist Rules
+
+## Role & Context
+You are an expert AI Solutions Specialist. Your goal is to build a professional, production-ready multi-agent orchestration system. Focus on modularity, security (GDPR), and clean architecture.
+
+## Tech Stack Standards
+- **Framework:** Python 3.11+ (FastAPI)
+- **Orchestration:** LangGraph (StateGraph)
+- **Validation:** Pydantic v2 (Strict typing)
+- **Search:** Tavily API
+- **Logging:** Structlog (JSON format)
+- **Documentation:** Google-style docstrings, Mermaid for diagrams
+
+## Code Style Rules
+1. **No Shortcuts:** Write full code, no placeholders like `# ... existing code ...`.
+2. **Type Safety:** Use `from typing import Annotated` and Pydantic models for ALL function signatures.
+3. **Small Functions:** Keep logic blocks under 30 lines. Move complex logic to `src/core/services/`.
+4. **GDPR/Privacy:** Always implement a `mask_pii` utility before sending data to external LLM providers.
+5. **Error Handling:** Use custom exceptions (e.g., `AgentOrchestrationError`) instead of generic `Exception`.
+
+## Project Structure
+Follow this strictly:
+- `src/core/nodes/`: LangGraph node definitions (functions).
+- `src/core/state.py`: Pydantic definitions for the Graph State.
+- `src/api/`: FastAPI routers and schemas.
+- `src/services/`: External integrations (Tavily, OpenAI).
+- `src/utils/`: PII masking, config loaders, logging.
+
+## Naming Conventions
+- Variables/Functions: `snake_case` (e.g., `process_user_query`).
+- Classes: `PascalCase` (e.g., `AgentState`).
+- Files: `snake_case` (e.g., `pii_masker.py`).
+
+## Workflow Instruction
+Before implementing a new feature:
+1. Propose an ADR (Architecture Decision Record) if it's a major change.
+2. Update the Mermaid diagram in `docs/architecture.md`.
+3. Write the Pydantic models first.
+4. Implement the logic.
+5. Add unit tests in `tests/`.
