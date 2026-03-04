@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
 class QueryRequest(BaseModel):
     """Schema for the user query request."""
@@ -11,6 +11,7 @@ class QueryResponse(BaseModel):
     answer: str = Field(..., description="The generated answer from the multi-agent system.")
     sources: List[str] = Field(default_factory=list, description="List of URLs or source names used.")
     pii_sanitized: bool = Field(..., description="Whether the response was checked for PII.")
+    metadata: Dict[str, Any] = Field(default_factory=dict, description="Execution metrics and metadata.")
 
 class HealthCheck(BaseModel):
     """Schema for the health check response."""

@@ -23,6 +23,9 @@ async def chat_endpoint(request: QueryRequest):
     Runs the agentic workflow: Research -> Synthesis.
     """
     try:
+        import time
+        start_time = time.time()
+        
         # Sanitize query (placeholder for now)
         sanitized_query = mask_pii(request.query)
         
@@ -37,14 +40,22 @@ async def chat_endpoint(request: QueryRequest):
         # Invoke LangGraph
         result = await app_graph.ainvoke(initial_state)
         
+        # Calculate execution time
+        execution_time = time.time() - start_time
+        
         # Extract the final AI message and sources
         final_message = result["messages"][-1].content
-        sources = [res["url"] for res in result.get("research_data", [])]
+        sources = [res["url"] for res in result.get("research_data", []) if isinstance(res, dict) and "url" in res]
+        
+        # Update metadata
+        metadata = result.get("metadata", {})
+        metadata["execution_time"] = execution_time
         
         return QueryResponse(
             answer=final_message,
             sources=sources,
-            pii_sanitized=False # Placeholder flag
+            pii_sanitized=False, # Placeholder flag
+            metadata=metadata
         )
         
     except Exception as e:
